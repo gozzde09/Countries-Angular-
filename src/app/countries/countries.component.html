@@ -1,0 +1,124 @@
+<!-- importera Search component -->
+<app-search (handleInput)="handleSearch($event)"></app-search>
+
+<!-- SIDA-KONTROLL 1 -->
+<div class="d-flex flex-wrap justify-content-end m-4">
+  <div class="d-flex flex-wrap btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mx-1" role="group" aria-label="First group">
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="first()">
+        &laquo;
+      </button>
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="previous()">
+        &lsaquo;
+      </button>
+    </div>
+    <div class="btn-group mx-1" role="group" aria-label="Second group">
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="previous()">
+        Föregående
+      </button>
+      <div class="btn-group mx-1" role="group" aria-label="Third group">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="pageDropdown" data-bs-toggle="dropdown">
+            Sida {{ page }} av {{ lastPage }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="pageDropdown">
+            <a class="dropdown-item" *ngFor="let pageNum of getPages()" (click)="setPage(pageNum)">{{ pageNum }}</a>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="next()">
+        Nästa
+      </button>
+    </div>
+    <div class="btn-group mx-1" role="group" aria-label="Fourth group">
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="next()">
+        &rsaquo;
+      </button>
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="last()">
+        &raquo;
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD CONTAINER -->
+<div class="d-flex flex-wrap justify-content-evenly flex-grow-1">
+  <ng-container *ngIf="filteredCountries.length !== 0; else noCountriesFound">
+    <div *ngFor="let country of filteredCountries">
+      <div class="card m-3" style="max-width: 20rem; background-color: rgb(244, 237, 215)">
+        <img [src]="country.flags.png" class="card-img-top" alt="Image" loading="lazy" />
+        <div class="card-body">
+          <h5 class="card-title">{{ country.translations.swe.common }}</h5>
+          <p class="card-text">
+            Landets huvudstad är {{ country.capital[0] }}, och det officiella
+            språket är {{ (country.languages | keyvalue)[0].value }}.
+          </p>
+          <button class="btn btn-warning" routerLink="./{{ country.name.common }}">
+            Läs mer
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noCountriesFound>
+    <div>
+      <p class="error">Inget land hittades! Försök igen.</p>
+    </div>
+  </ng-template>
+</div>
+
+<!-- SIDA-KONTROLL 2 -->
+<div class="d-flex flex-wrap justify-content-end m-4">
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mx-1" role="group" aria-label="First group">
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="first()">
+        &laquo;
+      </button>
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="previous()">
+        &lsaquo;
+      </button>
+    </div>
+    <div class="btn-group mx-1" role="group" aria-label="Second group">
+      <button type="button" class="btn btn-warning" [disabled]="page === 1" (click)="previous()">
+        Föregående
+      </button>
+      <span><strong>Sida {{ page }} av {{ lastPage }}</strong></span>
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="next()">
+        Nästa
+      </button>
+    </div>
+    <div class="btn-group mx-1" role="group" aria-label="Third group">
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="next()">
+        &rsaquo;
+      </button>
+      <button type="button" class="btn btn-warning" [disabled]="page === lastPage" (click)="last()">
+        &raquo;
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+  .error {
+    margin: 30px auto;
+    color: #e6ae05;
+    font-size: xx-large;
+    font-weight: bolder;
+  }
+
+  span {
+    margin: 10px;
+  }
+
+  .btn {
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 550px) {
+
+    .btn,
+    .btn-toolbar span {
+      font-size: 0.7rem;
+    }
+  }
+</style>

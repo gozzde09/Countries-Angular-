@@ -1,0 +1,135 @@
+<ng-container class="d-flex flex-wrap flex-grow-1 mx-auto mt-4">
+  <div id="infoCard" *ngIf="selectedCountry" class="card d-flex flex-column mx-auto" style="
+      background-color: rgb(253, 248, 231);
+      max-width: 50rem;
+      position: relative;
+    ">
+    <div class="content">
+      <div class="content d-flex flex-wrap justify-content-between align-items-start">
+        <h1 class="mx-auto">{{ selectedCountry.translations.swe.common }}</h1>
+        <img class="mx-auto" [src]="selectedCountry.flags.png" alt="Country Flag" loading="lazy"
+          style="max-width: 200px; max-height: 100px" />
+        <button routerLink="/countries" class="btn btn-warning p-2" style="position: absolute; top: 0; right: 0">
+          X
+        </button>
+      </div>
+      <!-- BILDER AV LANDET -->
+      <div *ngIf="selectedCountry?.unsplashImages">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="
+                let image of selectedCountry?.unsplashImages;
+                let i = index
+              " [class.active]="i === 0">
+              <img [src]="image" class="d-block w-100" alt="Bild av country" style="height: 250px" />
+            </div>
+          </div>
+          <div class="carousel-control-prev" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+          </div>
+          <div class="carousel-control-next" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+          </div>
+        </div>
+      </div>
+
+      <h4><strong> Region: </strong> {{ selectedCountry.region }}</h4>
+      <h4><strong> Subregion: </strong> {{ selectedCountry.subregion }}</h4>
+      <h4>Detaljer</h4>
+      <ul>
+        <li>Official Namn: {{ selectedCountry.name.official }}</li>
+        <li>Huvudstad: {{ selectedCountry.capital[0] }}</li>
+        <li>
+          <p *ngFor="
+              let language of selectedCountry.languages | keyvalue;
+              let i = index
+            ">
+            Språk-{{ i + 1 }}: {{ language.value }}
+          </p>
+        </li>
+        <li *ngFor="let currency of selectedCountry.currencies | keyvalue">
+          Currency: {{ currency.value.symbol }} - {{ currency.value.name }} ({{
+          currency.key
+          }}
+          )
+        </li>
+        <li>Befolkning: {{ selectedCountry.population }}</li>
+        <li>Yta: {{ selectedCountry.area }} km²</li>
+        <li *ngIf="selectedCountry.car.side === 'right'">Traffik: Höger</li>
+        <li *ngIf="selectedCountry.car.side !== 'right'">Traffik: Vänster</li>
+      </ul>
+      <h4>Kartor</h4>
+      <ul>
+        <li>
+          Google Maps:
+          <a [href]="selectedCountry.maps.googleMaps" target="_blank">Link</a>
+        </li>
+        <li>
+          OpenStreetMaps:
+          <a [href]="selectedCountry.maps.openStreetMaps" target="_blank">Link</a>
+        </li>
+      </ul>
+
+      <div class="d-flex flex-wrap button-container justify-content-between m-5">
+        <a routerLink="/" class="btn-link">
+          <button class="mx-auto my-2 btn btn-warning">Gå till hemsida</button>
+        </a>
+        <a routerLink="/countries" class="btn-link">
+          <button class="mx-auto my-2 btn btn-warning">Gå till listan</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<style>
+  a {
+    color: #ffc107;
+    font-weight: bolder;
+  }
+
+  h1 {
+    color: #e6ae05;
+    font-weight: bolder;
+    font-family: Brush Script MT;
+    font-size: 3.5rem;
+    margin: 1rem;
+  }
+
+  h4 {
+    font-weight: bolder;
+  }
+
+  h4,
+  li {
+    margin: 5px 32px;
+  }
+
+  #infoCard {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .btn-link {
+    padding: 0;
+  }
+
+  @media (max-width: 550px) {
+    h1 {
+      font-size: 3rem;
+    }
+
+    .btn {
+      font-size: 0.8rem;
+    }
+
+    #infoCard {
+      max-width: 35rem;
+    }
+  }
+</style>

@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  flex-grow: 1;
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-size:0.8rem;
+}
+h1 {
+  font-family: Brush Script MT;
+  font-size: 4rem;
+}
+img {
+  width: 300px;
+  height: 160px;
+  padding: 10px;
+}
+main {
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("https://source.unsplash.com/FIKD9t5_5zQ");
+  background-color: #8ad6eb;
+}
+.card, button,.foto {
+  margin: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}

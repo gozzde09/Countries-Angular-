@@ -1,0 +1,55 @@
+<main class="d-flex flex-column">
+  <div class="info d-flex flex-column card text-center mx-auto card" style="width: 65%">
+    <div class="card-body mx-auto">
+      <h1 style="font-weight: bold; color: #ffc107">LÄRA DIG OM LÄNDER</h1>
+      <h2>Utforska Världens Mångfald</h2>
+      <p class="card-text">
+        Denna sida är dedikerad till att erbjuda en fascinerande inblick i
+        länder runt om i hela världen.
+      </p>
+      <p class="card-text">
+        Utforska och läsa om spännande fakta och intressanta detaljer om olika
+        länder.
+      </p>
+      <p class="card-text">
+        Se vackra bilder och kartor som ger dig en visuell resa genom världen.
+      </p>
+      <a routerLink="/countries" class="d-flex">
+        <button type="button" class="btn mx-auto btn-warning">
+          LISTA ÖVER LÄNDER
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="mx-auto d-flex flex-wrap">
+    <img class="foto mx-auto" src="https://source.unsplash.com/3wFRlwS91yk" alt="Austria" loading="lazy" />
+    <img class="foto mx-auto" src="https://source.unsplash.com/7dEyTJ7-8os" alt="Globe" loading="lazy" />
+    <img class="foto mx-auto" src="https://source.unsplash.com/dBtWLliLt5k" alt="Italy" loading="lazy" />
+    <img class="foto mx-auto" src="https://source.unsplash.com/aDxmYZtYj7g" alt="Prag" loading="lazy" />
+  </div>
+</main>
+<style>
+  .info {
+    text-align: center;
+    margin: 1rem auto;
+    background-color: rgb(244, 237, 215);
+    font-size:0.9rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+  }
+   @media (max-width: 550px) {
+    .btn{
+      font-size: 0.8rem;
+      height: 30px;
+      padding:0 10px;
+    }
+  }
+</style>
