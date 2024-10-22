@@ -45,7 +45,7 @@
 <div class="d-flex flex-wrap justify-content-evenly flex-grow-1">
   <ng-container *ngIf="filteredCountries.length !== 0; else noCountriesFound">
     <div *ngFor="let country of filteredCountries">
-      <div class="card m-3" style="max-width: 20rem; background-color: rgb(244, 237, 215)">
+      <div class="card m-3" style="max-width: 18em; background-color: rgb(244, 237, 215)">
         <img [src]="country.flags.png" class="card-img-top" alt="Image" loading="lazy" />
         <div class="card-body">
           <h5 class="card-title">{{ country.translations.swe.common }}</h5>
